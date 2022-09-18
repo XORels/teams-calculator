@@ -39,16 +39,18 @@ public class Teams {
         return differences.toString();
     }
 
+
+    File data = new File("Data.txt");
     public int loadData() {
         try {
-            File f = new File("Data.txt");
-                FileInputStream inStream = new FileInputStream(f);
+            FileInputStream inStream = new FileInputStream(data);
             ObjectInputStream o = new ObjectInputStream(inStream);
             this.teams = (Team[]) o.readObject();
             int day = (int) (Integer) o.readObject();
             o.close();
             return day;
         } catch (IOException | ClassNotFoundException | NullPointerException e) {
+            System.out.print("Oops!");
             e.printStackTrace();
             return -1;
         }
@@ -56,7 +58,7 @@ public class Teams {
 
     public void saveData(int day) {
         try {
-            FileOutputStream out = new FileOutputStream("Data.txt");
+            FileOutputStream out = new FileOutputStream(data);
             ObjectOutputStream s = new ObjectOutputStream(out);
             s.writeObject(teams);
             s.writeObject(day);

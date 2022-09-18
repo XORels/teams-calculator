@@ -3,6 +3,7 @@ package Main;
 import java.io.Serializable;
 
 public class Team implements Serializable {
+    public static String[] trophies = {"\uD83C\uDFC6", "\uD83E\uDD48", "\uD83E\uDD49", ""};
     public int totalPoints = 0;
     public int dailyPoints = 0;
     public int difference = 0;
@@ -10,8 +11,6 @@ public class Team implements Serializable {
     public String teamName = "";
     public String trophy = "";
     public int dayBeforePoints = 0;
-
-    public static String[] trophies = {"\uD83C\uDFC6", "\uD83E\uDD48", "\uD83E\uDD49", ""};
 
     public Team(String name) {
         teamName = name;
@@ -22,7 +21,10 @@ public class Team implements Serializable {
     }
 
     private double calcDifferencePercentage() {
-        return (double) difference / yesterdayPoints * 100;
+        if (difference == 0 || yesterdayPoints == 0)
+            return 0;
+        else
+            return (double) difference / yesterdayPoints * 100;
     }
 
     public String changeFromYesterday() {

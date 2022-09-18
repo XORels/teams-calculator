@@ -1,32 +1,35 @@
 package Main;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Controller {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Teams teams = new Teams();
-        int day = teams.loadData();
+        int day = 0;
+        // Image string used to hold URL of image used for blog
         String image = null;
         Scanner in = new Scanner(System.in);
+        File data = new File("Data.txt");
 
-        if (day == -1) {
-            System.out.println("File could not be loaded!");
+        if (data.createNewFile()){
+            System.out.println("New Event! Data file created");
             System.out.println("Continue? y/n");
             char cont = in.next().charAt(0);
             if (cont == 'y') {
                 teams = new Teams();
-                day = 0;
             } else {
                 System.exit(1);
             }
-        }
+        };
 
         System.out.println("2021 Game Points Calculator!");
 
         System.out.println("Undo last day or add new day? u/a");
-        char undo = in.next().charAt(0);
-        if (undo == 'u') {
+        char choice = in.next().charAt(0);
+        if (choice == 'u') {
+            //Undo for correcting errors
             for (Team team : teams.getTeams()
             ) {
                 team.totalPoints = -team.dailyPoints;
