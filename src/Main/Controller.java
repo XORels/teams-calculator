@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Controller {
     public static void main(String[] args) throws IOException {
         Teams teams = new Teams();
-        int day = 0;
+        int day = teams.loadData();
         // Image string used to hold URL of image used for blog
         String image = null;
         Scanner in = new Scanner(System.in);

@@ -22,7 +22,7 @@ public class Team implements Serializable {
 
     private double calcDifferencePercentage() {
         if (difference == 0 || yesterdayPoints == 0)
-            return 0;
+            return 0.0;
         else
             return (double) difference / yesterdayPoints * 100;
     }
