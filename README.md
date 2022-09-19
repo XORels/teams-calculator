@@ -17,3 +17,5 @@ As I wrote this to aid in writing blog posts, it also takes in a URL for whateve
 Output is stylised with HTML tags and unicode trophies, and pasted into a .txt file for each day
 
 Program also includes undo function to remove previous day's points
+
+TODO in future: output graph of daily points, project winners
