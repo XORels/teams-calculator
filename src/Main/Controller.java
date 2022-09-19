@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class Controller {
     public static void main(String[] args) throws IOException {
+        File data = new File("Data.txt");
         Teams teams = new Teams();
-        int day = teams.loadData();
+        int day = 0;
         // Image string used to hold URL of image used for blog
         String image = null;
         Scanner in = new Scanner(System.in);
-        File data = new File("Data.txt");
 
         if (data.createNewFile()){
             System.out.println("New Event! Data file created");
@@ -22,7 +22,9 @@ public class Controller {
             } else {
                 System.exit(1);
             }
-        };
+        }
+        else
+            day = teams.loadData(data);
 
         System.out.println("2021 Game Points Calculator!");
 
@@ -32,9 +34,7 @@ public class Controller {
             //Undo for correcting errors
             for (Team team : teams.getTeams()
             ) {
-                team.totalPoints = -team.dailyPoints;
-                team.yesterdayPoints = team.dayBeforePoints;
-                team.yesterdayPoints = team.dailyPoints;
+                team.undo();
             }
             day--;
         }

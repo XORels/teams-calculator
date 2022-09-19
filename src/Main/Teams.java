@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class Teams {
     Team[] teams = new Team[4];
     Team[] placement;
+    File data = new File("Data.txt");
 
     public Teams() {
         teams[0] = new Team("A Team");
@@ -39,9 +40,7 @@ public class Teams {
         return differences.toString();
     }
 
-
-    File data = new File("Data.txt");
-    public int loadData() {
+    public int loadData(File data) {
         try {
             FileInputStream inStream = new FileInputStream(data);
             ObjectInputStream o = new ObjectInputStream(inStream);

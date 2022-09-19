@@ -8,7 +8,7 @@ public class Team implements Serializable {
     public int dailyPoints = 0;
     public int difference = 0;
     public int yesterdayPoints = 0;
-    public String teamName = "";
+    public String teamName;
     public String trophy = "";
     public int dayBeforePoints = 0;
 
@@ -35,9 +35,14 @@ public class Team implements Serializable {
         yesterdayPoints = dailyPoints;
 
         if (difference > 0)
-            return String.format(teamName + ":[b] +%,d (+%,.3f%%)[/b]", difference, perc);
+            return String.format(teamName + ":[b] +%,d (+%,.2f%%)[/b]", difference, perc);
         else
-            return String.format(teamName + ": %,d (%,.3f%%)", difference, perc);
-
+            return String.format(teamName + ": %,d (%,.2f%%)", difference, perc);
+    }
+    public void undo(){
+        totalPoints -= dailyPoints;
+        yesterdayPoints = dayBeforePoints;
+        //yesterdayPoints = dailyPoints;
+        dailyPoints = 0;
     }
 }
