@@ -15,12 +15,13 @@ public class Controller {
 
         if (data.createNewFile()){
             System.out.println("New Event! Data file created");
+            teams.saveData(0);
             System.out.println("Continue? y/n");
             char cont = in.next().charAt(0);
             if (cont == 'y') {
                 teams = new Teams();
             } else {
-                System.exit(1);
+                System.exit(0);
             }
         }
         else
@@ -28,16 +29,18 @@ public class Controller {
 
         System.out.println("2021 Game Points Calculator!");
 
-        System.out.println("Undo last day or add new day? u/a");
-        char choice = in.next().charAt(0);
-        if (choice == 'u') {
-            //Undo for correcting errors
-            for (Team team : teams.getTeams()
-            ) {
-                team.undo();
-            }
-            day--;
-        }
+       if (day > 1) {
+           System.out.println("Undo last day or add new day? u/a");
+           char choice = in.next().charAt(0);
+           if (choice == 'u') {
+               //Undo for correcting errors
+               for (Team team : teams.getTeams()
+               ) {
+                   team.undo();
+               }
+               day--;
+           }
+       }
 
         //Entering values
         boolean entered = false;

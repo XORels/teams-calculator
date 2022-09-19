@@ -48,7 +48,7 @@ public class Teams {
             int day = (int) (Integer) o.readObject();
             o.close();
             return day;
-        } catch (IOException | ClassNotFoundException | NullPointerException e) {
+        } catch (ClassNotFoundException | NullPointerException | IOException e) {
             System.out.print("Oops!");
             e.printStackTrace();
             return -1;
